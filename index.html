@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – Manoj Kumar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-dark:   #ffffff;
+      --bg-card:   #f2f5f9;
+      --bg-nav:    #f8fafc;
+      --accent:    #1a8fd1;
+      --accent2:   #3fa9f5;
+      --text:      #1a2332;
+      --muted:     #556070;
+      --radius:    14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Navbar ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-nav);
+      border-bottom: 1px solid rgba(26,143,209,.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      color: var(--text);
+    }
+
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .3px;
+      transition: color .25s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── Glowing Button ── */
+    .btn-glow {
+      display: inline-block;
+      padding: 12px 32px;
+      border-radius: 50px;
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Poppins', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: .5px;
+      box-shadow: 0 0 14px rgba(26,143,209,.45), inset 0 0 14px rgba(26,143,209,.15);
+      transition: box-shadow .3s, background .3s, color .3s;
+      text-decoration: none;
+    }
+
+    .btn-glow:hover {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 28px rgba(26,143,209,.7);
+    }
+
+    /* ── Section shared ── */
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 60px;
+    }
+
+    /* ══════════════════════════════════
+       SECTION 1 – HOME
+    ══════════════════════════════════ */
+    #home {
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .home-text { max-width: 600px; }
+
+    .home-text p.greeting {
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .home-text h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .home-text h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .home-text h2 span { color: var(--accent); }
+
+    .home-text .bio {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-bottom: 28px;
+      max-width: 540px;
+    }
+
+    /* social icons */
+    .social-icons {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .social-icons a {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background .25s, color .25s, box-shadow .25s;
+      box-shadow: 0 0 8px rgba(26,143,209,.3);
+    }
+
+    .social-icons a:hover {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 18px rgba(26,143,209,.6);
+    }
+
+    /* profile circle */
+    .home-img {
+      flex-shrink: 0;
+    }
+
+    @keyframes floatUpDown {
+      0%   { transform: translateY(0px); }
+      50%  { transform: translateY(-22px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .home-img img {
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 40px rgba(26,143,209,.35);
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
+
+    /* ══════════════════════════════════
+       SECTION 2 – ABOUT
+    ══════════════════════════════════ */
+    #about {
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .about-img img {
+      width: 320px; height: 360px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 30px rgba(26,143,209,.3);
+    }
+
+    .about-text { max-width: 540px; }
+
+    .about-text h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .about-text h2 span { color: var(--accent); }
+
+    .about-text h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-bottom: 28px;
+    }
+
+    /* ══════════════════════════════════
+       SECTION 3 – SERVICES
+    ══════════════════════════════════ */
+    #services {
+      flex-direction: column;
+      justify-content: center;
+      gap: 50px;
+      text-align: center;
+    }
+
+    #services h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+    }
+
+    #services h2 span { color: var(--accent); }
+
+    .cards {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 40px 30px;
+      width: 300px;
+      text-align: center;
+      border: 1px solid rgba(26,143,209,.2);
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(26,143,209,.2);
+    }
+
+    .card-icon {
+      font-size: 2.6rem;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+
+    /* ══════════════════════════════════
+       SECTION 4 – SKILLS
+    ══════════════════════════════════ */
+    #skills {
+      flex-direction: column;
+      justify-content: center;
+      gap: 50px;
+      text-align: center;
+    }
+
+    #skills h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+    }
+
+    #skills h2 span { color: var(--accent); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 60px;
+      width: 100%;
+      max-width: 860px;
+      text-align: left;
+    }
+
+    .skill-item { display: flex; flex-direction: column; gap: 8px; }
+
+    .skill-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .3px;
+    }
+
+    .skill-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(26,143,209,.12);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+
+    .skill-bar {
+      height: 100%;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #1a8fd1, #3fa9f5);
+      box-shadow: 0 0 10px rgba(26,143,209,.5);
+      width: 0;
+      transition: width 1.4s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ══════════════════════════════════
+       SECTION 5 – CONTACT
+    ══════════════════════════════════ */
+    #contact {
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+    }
+
+    #contact h2 span { color: var(--accent); }
+
+    .contact-form {
+      width: 100%;
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 18px;
+    }
+
+    .form-row input,
+    .contact-form input,
+    .contact-form textarea {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid rgba(26,143,209,.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .25s, box-shadow .25s;
+    }
+
+    .form-row input:focus,
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(26,143,209,.25);
+    }
+
+    .contact-form textarea {
+      height: 200px;
+      resize: vertical;
+    }
+
+    ::placeholder { color: var(--muted); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--muted);
+      font-size: .82rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      section { padding: 60px 20px; }
+
+      #home { flex-direction: column-reverse; align-items: center; text-align: center; }
+      .home-text .bio { margin: 0 auto 28px; }
+      .social-icons { justify-content: center; }
+      .home-img img { width: 200px; height: 200px; }
+
+      #about { flex-direction: column; align-items: center; text-align: center; }
+      .about-img img { width: 260px; height: 300px; }
+
+      .form-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav>
+  <span class="nav-logo">Portfolio</span>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HOME ══ -->
+<section id="home">
+  <div class="home-text">
+    <p class="greeting">hi myself</p>
+    <h1>Manoj kumar</h1>
+    <h2>And<span> I am a Full stack developer</span></h2>
+    <p class="bio">I am a passionate Full Stack Developer skilled in building responsive and dynamic web applications. I work on both front-end and back-end technologies to create efficient and user-friendly solutions</p>
+
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+
+    <a href="#" class="btn-glow">Download CV</a>
+  </div>
+
+  <div class="home-img">
+    <!-- Replace src with your actual image path -->
+     <img src="Pictures\myphoto.jpeg" alt="My photo">
+</div>
+</section>
+
+<section id="about">
+  <div class="about-img">
+         <img src="Pictures\myphoto.jpeg" alt="My photo">
+
+  </div>
+
+  <div class="about-text">
+    <h2>About <span>Me</span></h2>
+    <h3>Frontend Developer</h3>
+    <p>I am a passionate and dedicated Full Stack Developer with a strong interest in building modern and responsive web applications. I have knowledge of both front-end and back-end technologies, including HTML, CSS, JavaScript, Python, and SQL. I enjoy solving problems, learning new technologies, and improving my skills every day. My goal is to develop efficient, user-friendly, and scalable applications that provide a great user experience. I am always eager to take on new challenges and grow as a developer.</p>
+     <a href="#" class="btn-glow">Read more</a>
+  </div>
+</section>
+
+<section id="services">
+  <h2>My <span>Services</span></h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+      <h3>web developement</h3>
+      <p>I provide web development services to build responsive and user-friendly websites using modern technologies like HTML, CSS, and JavaScript. My focus is on creating visually appealing designs that work smoothly across different devices and browsers. I ensure that the websites are fast, interactive, and provide a great user experience.</p>
+      <a href="#" class="btn-glow">Readmore</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-database"></i></div>
+      <h3>Database developement</h3>
+      <p>I design and manage efficient databases to store and organize application data securely. I work with SQL to create tables, perform queries, and maintain data integrity. My goal is to ensure that the data is structured properly and can be accessed quickly and reliably for smooth application performance</p>
+      <a href="#" class="btn-glow">Readmore</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon"><i class="fa-brands fa-python"></i></div>
+      <h3>Python developement</h3>
+      <p>I develop applications using Python for backend logic, automation, and data processing. I use Python to build scalable and efficient systems, handle server-side operations, and integrate APIs. My focus is on writing clean and maintainable code to deliver reliable and high-performance solutions.</p>
+      <a href="#" class="btn-glow">Readmore</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <h2>My <span>Skills</span></h2>
+
+  <div class="skills-grid">
+    <div class="skill-item">
+      <span class="skill-label">HTML</span>
+      <div class="skill-bar-bg"><div class="skill-bar" data-width="90%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span class="skill-label">My SQL</span>
+      <div class="skill-bar-bg"><div class="skill-bar" data-width="85%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span class="skill-label">CSS</span>
+      <div class="skill-bar-bg"><div class="skill-bar" data-width="80%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span class="skill-label">SQL</span>
+      <div class="skill-bar-bg"><div class="skill-bar" data-width="88%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span class="skill-label">JavaScript</span>
+      <div class="skill-bar-bg"><div class="skill-bar" data-width="75%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span class="skill-label">Django/Flask</span>
+      <div class="skill-bar-bg"><div class="skill-bar" data-width="92%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span class="skill-label">Python</span>
+      <div class="skill-bar-bg"><div class="skill-bar" data-width="78%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span class="skill-label">React</span>
+      <div class="skill-bar-bg"><div class="skill-bar" data-width="70%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <h2>Contact <span>Me</span></h2>
+
+  <div class="contact-form">
+    <div class="form-row">
+      <input type="text"  placeholder="full Name" />
+      <input type="email" placeholder="Enter Your Email" />
+    </div>
+    <div class="form-row">
+      <input type="tel"  placeholder="Enter Your Mobile" />
+      <input type="text" placeholder="Enter Email Subject" />
+    </div>
+    <textarea placeholder="Your Message"></textarea>
+    <div style="text-align:center;">
+      <button class="btn-glow">Send Messages</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Manoj Kumar · All rights reserved
+</footer>
+
+
+<script>
+  // Animate skill bars when section scrolls into view
+  const bars = document.querySelectorAll('.skill-bar');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bar = entry.target;
+        bar.style.width = bar.dataset.width;
+        observer.unobserve(bar);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(bar => observer.observe(bar));
+</script>
+</body>
+</html>
+
